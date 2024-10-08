@@ -29,12 +29,15 @@ lives = len(hangman_art.stages)-1
 end_of_game = False
 
 
-# while not end_of_game:
-print(hangman_art.stages[lives])
-print(f"\nLives: {lives}\n")
-print(f"{' '.join(display)}") #Join list of underscores to str
+while not end_of_game:
+    print(hangman_art.stages[lives])
+    print(f"\nLives: {lives}\n")
+    print(f"{' '.join(display)}") #Join list of underscores to str
+
 
 #TODO Ask user for input.
+    user_guess = input(f"\nGuess a letter: ").lower()
+
 
 #TODO Check lenght of input.
 
