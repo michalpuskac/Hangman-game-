@@ -66,7 +66,7 @@ while not end_of_game:
         lives -= 1
         if lives == 0:
             end_of_game = True
-        print(f"You have lost. The word was: {random_word}")
+            print(f"You have lost. The word was: {random_word}")
 
 
     #TODO Define win in the game.
