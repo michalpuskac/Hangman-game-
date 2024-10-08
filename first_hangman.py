@@ -54,8 +54,8 @@ while not end_of_game:
 
     #TODO Check a guessed letter
     for position in range(word_lenght):
-        letter = random_word[position]
-        if letter == user_guess:
+        letter = random_word[position].lower()
+        if letter == user_guess.lower():
             display[position] = letter
 
 
