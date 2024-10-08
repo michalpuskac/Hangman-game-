@@ -3,7 +3,12 @@ import random
 import hangman_art
 import hangman_words
 import os
+
+
 #TODO Show game welcomes and logos.
+print(f"\nWELCOME IN HANGMAN GAME")
+print(f"{hangman_art.logo}")
+
 
 #TODO Show menu, with game styles and difficulty.
 
