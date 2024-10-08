@@ -13,6 +13,22 @@ def welcome_message():
 
 
 def display_menu():
+    """Displays the game menu and returns the player's chosen difficulty level"""
+    print(f"Select difficulty level:")
+    print(f"1. Easy (Country is shown)")
+    print(f"2. Medium (No country shown)")
+    print(f"3. Hard (No country shown, only 3 lives)")
+
+    while True: 
+        try:
+            difficulty = int(input("Enter difficulty level 1, 2, or 3: "))
+            if difficulty in [1,2,3]:
+                return difficulty
+            else:
+                print(f"Please enter a valid choice (1, 2, or 3).")
+        except ValueError:
+            print(f"Please enter a number (1, 2, or 3).")
+
 
 def pick_random_word():
 
