@@ -10,9 +10,12 @@ print(f"\nWELCOME IN HANGMAN GAME")
 print(f"{hangman_art.logo}")
 
 
-#TODO Show menu, with game styles and difficulty.
+#TODO Show menu, with game styles and difficulty. Later, in working app
 
 #TODO Pick a random word from module.
+random_word = random.choice(hangman_words.fruits)
+print(f"TEST CODE: {random_word}")
+
 
 #TODO Show underscore for each letter of the word.
 
