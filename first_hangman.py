@@ -4,7 +4,16 @@ import hangman_art
 import hangman_words
 import os
 
-def make_dict_from_txt():
+def make_dict_from_txt(filename):
+    """Read .txt file go through every line and split it on '|' at the end make a dictionary from it. """
+    cities_dictionary = {}
+    with open(filename, "r", encoding = "utf-8") as file:
+        for line in file:
+            line = line.strip()
+            if "|" in line:
+                country, capital = line.split("|")
+                cities_dictionary[capital.strip()] = country.strip() # Capital as key, country as value
+    return cities_dictionary
 
 def welcome_message():
     """Print welcome message and logo of a game from hangman_art file."""
@@ -46,9 +55,12 @@ def is_game_won():
 
 def is_game_lost():
 
-#Main game loop
-def play_hangman():
 
+def play_hangman():
+    """Main function to run the hangman game."""
+
+    file = "countries-and-capitals.txt"
+    countries_dict = make_dict_from_txt(file)
 
 if __name__ == "__main__":
     play_hangman()
