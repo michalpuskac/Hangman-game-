@@ -18,6 +18,21 @@ print(f"TEST CODE: {random_word}")
 
 
 #TODO Show underscore for each letter of the word.
+display =[]
+word_lenght = len(random_word)
+
+for _ in range(word_lenght):
+    display += "_"
+
+
+lives = len(hangman_art.stages)-1
+end_of_game = False
+
+
+# while not end_of_game:
+print(hangman_art.stages[lives])
+print(f"\nLives: {lives}\n")
+print(f"{' '.join(display)}") #Join list of underscores to str
 
 #TODO Ask user for input.
 
