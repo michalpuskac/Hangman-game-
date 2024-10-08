@@ -1,2 +1,2 @@
-# Hangman-game-
-Guessing game where you can play agains PC and I can hopefully can show something from my code 
+# Hangman-game
+Guessing game where you can play against your PC and I can hopefully show something from my coding skills.
