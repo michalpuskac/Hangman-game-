@@ -1,5 +1,8 @@
 #TODO Import modules.
-
+import random
+import hangman_art
+import hangman_words
+import os
 #TODO Show game welcomes and logos.
 
 #TODO Show menu, with game styles and difficulty.
