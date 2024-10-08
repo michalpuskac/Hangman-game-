@@ -37,7 +37,7 @@ while not end_of_game:
 
     #TODO Ask user for input.
     user_guess = input(f"\nGuess a letter: ")
-
+    os.system("clear")
 
     #TODO Check lenght of input.
     if len(user_guess) != 1:
