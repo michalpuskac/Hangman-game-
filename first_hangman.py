@@ -37,6 +37,8 @@ while not end_of_game:
 
     #TODO Ask user for input.
     user_guess = input(f"\nGuess a letter: ")
+
+    #TODO Clear screen after each guess to avoid full terminal of history.
     os.system("clear")
 
     #TODO Check lenght of input.
@@ -45,7 +47,7 @@ while not end_of_game:
         continue
 
 
-    #TODO Check if user guessed the letter]
+    #TODO Check repetitive guesses.
     if user_guess in display:
         print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
 
@@ -57,11 +59,16 @@ while not end_of_game:
             display[position] = letter
 
 
-    #TODO Validate user guess if it's right or wrong. Wrong means lives -1.
+    #TODO Check if user is wrong. -lives counter
+    if user_guess not in random_word:
+        print(f"Wrong guess you've lost 1 live.")
 
-    #TODO Check repetitive guesses.
+        lives -= 1
+        if lives == 0:
+            end_of_game = True
 
-    #TODO Clear screen after each guess to avoid full terminal of history.
+
+
 
     #TODO Define if user is Winner or Loser.
 
