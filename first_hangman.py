@@ -7,6 +7,10 @@ import os
 def make_dict_from_txt():
 
 def welcome_message():
+    """Print welcome message and logo of a game from hangman_art file."""
+    print(f"\nWELCOME TO HANGMAN GAME")
+    print(f"{hangman_art.logo}\n")
+
 
 def display_menu():
 
@@ -34,11 +38,6 @@ if __name__ == "__main__":
     play_hangman()
 
 
-
-
-#TODO Show game welcomes and logos.
-print(f"\nWELCOME IN HANGMAN GAME")
-print(f"{hangman_art.logo}")
 
 
 #TODO Show menu, with game styles and difficulty. Later, in working app
