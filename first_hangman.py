@@ -66,10 +66,14 @@ while not end_of_game:
         lives -= 1
         if lives == 0:
             end_of_game = True
+        print(f"You have lost. The word was: {random_word}")
 
 
+    #TODO Define win in the game.
+    if "_" not in display:
+        end_of_game = True
+        print(f"You win. You have left {lives} lives.")
 
-
-    #TODO Define if user is Winner or Loser.
+print(hangman_art.stages[lives])
 
     #TODO Ask to play again or quit.
