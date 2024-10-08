@@ -4,6 +4,37 @@ import hangman_art
 import hangman_words
 import os
 
+def make_dict_from_txt():
+
+def welcome_message():
+
+def display_menu():
+
+def pick_random_word():
+
+def create_display():
+
+def get_user_guess():
+
+def update_display():
+
+def clear_screen():
+
+def check_guess():
+
+def is_game_won():
+
+def is_game_lost():
+
+#Main game loop
+def play_hangman():
+
+
+if __name__ == "__main__":
+    play_hangman()
+
+
+
 
 #TODO Show game welcomes and logos.
 print(f"\nWELCOME IN HANGMAN GAME")
