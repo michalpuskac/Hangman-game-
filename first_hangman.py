@@ -13,7 +13,7 @@ print(f"{hangman_art.logo}")
 #TODO Show menu, with game styles and difficulty. Later, in working app
 
 #TODO Pick a random word from module.
-random_word = random.choice(hangman_words.fruits).lower()
+random_word = random.choice(hangman_words.fruits)
 print(f"TEST CODE: {random_word}")
 
 
@@ -36,14 +36,7 @@ while not end_of_game:
 
 
     #TODO Ask user for input.
-    user_guess = input(f"\nGuess a letter: ").lower
-
-
-    #TODO Check a guessed letter
-    for position in range(word_lenght):
-        letter = random_word[position]
-        if letter == user_guess:
-            display[position] = letter
+    user_guess = input(f"\nGuess a letter: ")
 
 
     #TODO Check lenght of input.
@@ -53,7 +46,17 @@ while not end_of_game:
 
 
     #TODO Check if user guessed the letter]
-    
+    if user_guess in display:
+        print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
+
+
+    #TODO Check a guessed letter
+    for position in range(word_lenght):
+        letter = random_word[position]
+        if letter == user_guess:
+            display[position] = letter
+
+
     #TODO Validate user guess if it's right or wrong. Wrong means lives -1.
 
     #TODO Check repetitive guesses.
