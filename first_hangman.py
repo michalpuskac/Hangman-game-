@@ -100,7 +100,19 @@ def play_hangman():
     chosen_city, country = pick_random_word(countries_dict) # Get capital and country
     display = create_display(chosen_city)
     end_of_game = False
+    all_guesses = []
+    wrong_guesses = []
 
+    while not end_of_game:
+        print_game_state(display, lives, chosen_city,country,show_country,difficulty)
+        if wrong_guess:
+            print(f"Incorrect guess: {', '.join(wrong_guesses)}")
+        
+        user_guess = get_user_guess()
+
+        if user_guess == "quit" # Quit condition
+        print(f"Goodbye")
+        break
 
 if __name__ == "__main__":
     play_hangman()
