@@ -78,7 +78,9 @@ def play_hangman():
     lives = len(hangman_art.stages) -1 if difficulty < 3 else len(hangman_art.stages2) -1 #set lives based on difficulty
 
     chosen_city, country = pick_random_word(countries_dict) # Get capital and country
-    display = create_display()
+    display = create_display(chosen_city)
+    end_of_game = False
+
 
 if __name__ == "__main__":
     play_hangman()
