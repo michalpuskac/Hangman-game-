@@ -1,19 +1,19 @@
 #TODO Import modules.
 import random
 import hangman_art
-import hangman_words
 import os
 
 def make_dict_from_txt(filename):
     """Read .txt file go through every line and split it on '|' at the end make a dictionary from it. """
     cities_dictionary = {}
-    with open(filename, "r", encoding = "utf-8") as file:
+    with open(filename, "r", encoding = "utf-8") as file: #utf-8 encoding for for cross platform, (not win default)
         for line in file:
             line = line.strip()
             if "|" in line:
                 country, capital = line.split("|")
                 cities_dictionary[capital.strip()] = country.strip() # Capital as key, country as value
     return cities_dictionary
+
 
 def welcome_message():
     """Print welcome message and logo of a game from hangman_art file."""
@@ -72,6 +72,7 @@ def clear_screen():
         os.system("clear") # Unix
 
 def check_guess(chosen_city, user_guess, lives):
+    """Checking if the user guess is in chosen word. If it is not, loose life"""
     if user_guess not in chosen_city.lower():
         print(f"Wrong guess, you've lost 1 life.")
         lives -= 1
@@ -87,20 +88,22 @@ def print_game_state(display, lives, country, show_country,difficulty):
         print(f"Lives: {lives} / {len(hangman_art.stages)-1}")
         if show_country: # Only if the difficulty allows display the country
             print(f"Guess the capital of : {country}\n")
-            print(f"{' '.join(display)}")  # Display the current guessed letters
+        print(f"{' '.join(display)}")  # Display the current guessed letters
 
 
+def is_game_won(display):
+    """Check if the game is won (no more underscores on display)."""
+    return "_" not in display
 
-# def is_game_won():
 
-# def is_game_lost():
-
+def is_game_lost(lives):
+    """Check if the game is lost (no more lives left)."""
+    return lives == 0
 
 
 
 def play_hangman():
     """Main function to run the hangman game."""
-
     file = "countries-and-capitals.txt"
     countries_dict = make_dict_from_txt(file)
 
@@ -108,7 +111,7 @@ def play_hangman():
 
     difficulty = display_menu() #Get the difficulty level based on user input 
     show_country = difficulty == 1 #Show country on on level 1
-    lives = len(hangman_art.stages) -1 if difficulty < 3 else len(hangman_art.stages2) -1 #Set lives based on difficulty
+    lives = len(hangman_art.stages)-1 if difficulty < 3 else len(hangman_art.stages2) -1 #Set lives based on difficulty
 
     chosen_city, country = pick_random_word(countries_dict) #Get capital and country
     display = create_display(chosen_city)
@@ -117,7 +120,7 @@ def play_hangman():
     wrong_guesses = []
 
     while not end_of_game:
-        print_game_state(display, lives, country, show_country,difficulty)
+        print_game_state(display, lives, country, show_country, difficulty)
         if wrong_guesses:
             print(f"Incorrect guess: {', '.join(wrong_guesses)}")
         
@@ -127,7 +130,7 @@ def play_hangman():
             print(f"Goodbye")
             break
 
-        clear_screen()
+        clear_screen() #Clear screen history after every guess
 
         if len(user_guess) != 1: #Check the guess has leght of only one sign
             print(f"You need to guess only 1 letter.\n")
@@ -147,14 +150,14 @@ def play_hangman():
                 lives -= 1
                 print(f"Wrong guess, you've lost 1 life.")
 
-        # if is_game_won(display):
-        #     end_of_game = True
-        #     print(f"You win! The capital of {country} is {chosen_city}.")
+        if is_game_won(display):
+            end_of_game = True
+            print(f"You win! The capital of {country} is {chosen_city}.")
 
-        # if is_game_lost(display):
-        #     end_of_game = True
-        #     print(f"\nYou have lost.\n")
-        #     print(f"The word was {chosen_city.upper()} the capital of {country}.")
+        if is_game_lost(lives):
+            end_of_game = True
+            print(f"\nYou have lost.\n")
+            print(f"The word was {chosen_city.upper()} the capital of {country}.")
 
     if difficulty == 3:
         print(f"{hangman_art.stages2[lives]}")
