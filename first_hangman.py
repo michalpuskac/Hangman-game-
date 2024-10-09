@@ -65,6 +65,11 @@ def update_display(chosen_city,display, user_guess):
 
 
 def clear_screen():
+    """Clear screen after every guess"""
+    if os.name == "nt": # Win .. ###NT = new technology means windows os.
+        os.system("cls")
+    else:
+        os.system("clear") # Unix
 
 def check_guess():
 
@@ -103,9 +108,6 @@ if __name__ == "__main__":
 #     print(f"\nLives: {lives}\n")
 #     print(f"{' '.join(display)}") #Join list of underscores to str
 
-
-#     #TODO Clear screen after each guess to avoid full terminal of history.
-#     os.system("clear")
 
 #     #TODO Check lenght of input.
 #     if len(user_guess) != 1:
