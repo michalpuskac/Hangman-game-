@@ -39,7 +39,12 @@ def display_menu():
             print(f"Please enter a number (1, 2, or 3).")
 
 
-def pick_random_word():
+def pick_random_word(cities_dictionary):
+    """Picks and return random word from word list of hangman words file."""
+    random_capital = random.choice(list(cities_dictionary.keys()))
+    country = cities_dictionary[random_capital]
+    return random_capital, country
+
 
 def create_display():
 
@@ -65,14 +70,6 @@ def play_hangman():
 if __name__ == "__main__":
     play_hangman()
 
-
-
-
-#TODO Show menu, with game styles and difficulty. Later, in working app
-
-#TODO Pick a random word from module.
-random_word = random.choice(hangman_words.fruits)
-print(f"TEST CODE: {random_word}")
 
 
 #TODO Show underscore for each letter of the word.
