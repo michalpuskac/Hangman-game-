@@ -47,10 +47,14 @@ def pick_random_word(cities_dictionary):
 
 
 def create_display(chosen_city):
+    """Prompts the user to guess a letter and returns user_guess"""
     return ["_" for _ in range[len(chosen_city)]]
 
 
 def get_user_guess():
+    """Updates the display with correctly guessed letters."""
+user_guess = input("Guess a letter: ").lower() #Convert user inpup to lowercase
+
 
 def update_display():
 
@@ -93,9 +97,6 @@ if __name__ == "__main__":
 #     print(f"\nLives: {lives}\n")
 #     print(f"{' '.join(display)}") #Join list of underscores to str
 
-
-#     #TODO Ask user for input.
-#     user_guess = input(f"\nGuess a letter: ")
 
 #     #TODO Clear screen after each guess to avoid full terminal of history.
 #     os.system("clear")
