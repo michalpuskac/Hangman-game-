@@ -53,10 +53,16 @@ def create_display(chosen_city):
 
 def get_user_guess():
     """Updates the display with correctly guessed letters."""
-user_guess = input("Guess a letter: ").lower() #Convert user inpup to lowercase
+user_guess = input("Guess a letter: ").lower() # Convert user inpup to lowercase
 
 
-def update_display():
+def update_display(chosen_city,display, user_guess):
+    """Updates the display with correctly guessed letters."""
+    for position in range(len(chosen_city)):
+        letter = chosen_city[position].lower() #C ompare lowercase
+        if letter == user_guess: # Compare with user guess
+            display[position] = chosen_city[position] # Keep original letter case
+
 
 def clear_screen():
 
@@ -110,13 +116,6 @@ if __name__ == "__main__":
 #     #TODO Check repetitive guesses.
 #     if user_guess in display:
 #         print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
-
-
-#     #TODO Check a guessed letter
-#     for position in range(word_lenght):
-#         letter = random_word[position].lower()
-#         if letter == user_guess.lower():
-#             display[position] = letter
 
 
 #     #TODO Check if user is wrong. -lives counter
