@@ -56,7 +56,7 @@ def get_user_guess():
 user_guess = input("Guess a letter: ").lower() # Convert user inpup to lowercase
 
 
-def update_display(chosen_city,display, user_guess):
+def update_display(chosen_city, display, user_guess):
     """Updates the display with correctly guessed letters."""
     for position in range(len(chosen_city)):
         letter = chosen_city[position].lower() #C ompare lowercase
@@ -71,7 +71,12 @@ def clear_screen():
     else:
         os.system("clear") # Unix
 
-def check_guess():
+def check_guess(chosen_city, user_guess, lives):
+    if user_guess not in chosen_city.lower():
+        print(f"Wrong guess, you've lost 1 life.")
+        lives -= 1
+    return lives
+
 
 def is_game_won():
 
@@ -120,11 +125,7 @@ if __name__ == "__main__":
 #         print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
 
 
-#     #TODO Check if user is wrong. -lives counter
-#     if user_guess not in random_word:
-#         print(f"Wrong guess you've lost 1 live.")
-
-#         lives -= 1
+#     #TODO game is lost
 #         if lives == 0:
 #             end_of_game = True
 #             print(f"You have lost. The word was: {random_word}")
