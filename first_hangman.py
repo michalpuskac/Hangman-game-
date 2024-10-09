@@ -46,7 +46,9 @@ def pick_random_word(cities_dictionary):
     return random_capital, country
 
 
-def create_display():
+def create_display(chosen_city):
+    return ["_" for _ in range[len(chosen_city)]]
+
 
 def get_user_guess():
 
@@ -82,17 +84,6 @@ if __name__ == "__main__":
     play_hangman()
 
 
-
-# #TODO Show underscore for each letter of the word.
-# display =[]
-# word_lenght = len(random_word)
-
-# for _ in range(word_lenght):
-#     display += "_"
-
-
-# lives = len(hangman_art.stages)-1
-# end_of_game = False
 
 
 # while not end_of_game:
