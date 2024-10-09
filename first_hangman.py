@@ -118,14 +118,14 @@ def play_hangman():
 
     while not end_of_game:
         print_game_state(display, lives, chosen_city,country,show_country,difficulty)
-        if wrong_guess:
+        if wrong_guesses:
             print(f"Incorrect guess: {', '.join(wrong_guesses)}")
         
         user_guess = get_user_guess()
 
-        if user_guess == "quit" # Quit condition
-        print(f"Goodbye")
-        break
+        if user_guess == "quit": # Quit condition
+            print(f"Goodbye")
+            break
 
 if __name__ == "__main__":
     play_hangman()
