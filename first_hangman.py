@@ -71,12 +71,6 @@ def clear_screen():
     else:
         os.system("clear") # Unix
 
-def check_guess(chosen_city, user_guess, lives):
-    """Checking if the user guess is in chosen word. If it is not, loose life"""
-    if user_guess not in chosen_city.lower():
-        print(f"Wrong guess, you've lost 1 life.")
-        lives -= 1
-    return lives
 
 def print_game_state(display, lives, country, show_country,difficulty):
     """Prints the current game state of the game, including the hangman graphic, lives, and the guessed word."""
