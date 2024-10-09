@@ -48,18 +48,18 @@ def pick_random_word(cities_dictionary):
 
 def create_display(chosen_city):
     """Prompts the user to guess a letter and returns user_guess"""
-    return ["_" for _ in range[len(chosen_city)]]
+    return ["_" for _ in range(len(chosen_city))]
 
 
 def get_user_guess():
     """Updates the display with correctly guessed letters."""
-user_guess = input("Guess a letter: ").lower() # Convert user inpup to lowercase
-
+    user_guess = input("Guess a letter: ").lower() #Convert user input to lowercase
+    return user_guess
 
 def update_display(chosen_city, display, user_guess):
     """Updates the display with correctly guessed letters."""
     for position in range(len(chosen_city)):
-        letter = chosen_city[position].lower() #C ompare lowercase
+        letter = chosen_city[position].lower() #Compare lowercase
         if letter == user_guess: # Compare with user guess
             display[position] = chosen_city[position] # Keep original letter case
 
@@ -81,19 +81,19 @@ def print_game_state(display, lives, country, show_country,difficulty):
     """Prints the current game state of the game, including the hangman graphic, lives, and the guessed word."""
     if difficulty == 3:
         print(hangman_art.stages2[lives])
-        print(f"Lives: {len(hangman_art.stages2)-1}")
+        print(f"Lives: {lives} / {len(hangman_art.stages2)-1}")
     else:
         print(hangman_art.stages[lives])
-        print(f"Lives: {len(hangman_art.stages)-1}")
+        print(f"Lives: {lives} / {len(hangman_art.stages)-1}")
         if show_country: # Only if the difficulty allows display the country
             print(f"Guess the capital of : {country}\n")
             print(f"{' '.join(display)}")  # Display the current guessed letters
 
 
 
-def is_game_won():
+# def is_game_won():
 
-def is_game_lost():
+# def is_game_lost():
 
 
 
@@ -108,16 +108,16 @@ def play_hangman():
 
     difficulty = display_menu() #Get the difficulty level based on user input 
     show_country = difficulty == 1 #Show country on on level 1
-    lives = len(hangman_art.stages) -1 if difficulty < 3 else len(hangman_art.stages2) -1 #set lives based on difficulty
+    lives = len(hangman_art.stages) -1 if difficulty < 3 else len(hangman_art.stages2) -1 #Set lives based on difficulty
 
-    chosen_city, country = pick_random_word(countries_dict) # Get capital and country
+    chosen_city, country = pick_random_word(countries_dict) #Get capital and country
     display = create_display(chosen_city)
     end_of_game = False
     all_guesses = []
     wrong_guesses = []
 
     while not end_of_game:
-        print_game_state(display, lives, chosen_city,country,show_country,difficulty)
+        print_game_state(display, lives, country, show_country,difficulty)
         if wrong_guesses:
             print(f"Incorrect guess: {', '.join(wrong_guesses)}")
         
@@ -127,40 +127,39 @@ def play_hangman():
             print(f"Goodbye")
             break
 
+        clear_screen()
+
+        if len(user_guess) != 1: #Check the guess has leght of only one sign
+            print(f"You need to guess only 1 letter.\n")
+            continue
+
+        if user_guess in all_guesses: #Check if the guess has been made before
+            print(f"You've already guessed the letter {user_guess.upper()}, try another one.\n")
+            continue
+
+        all_guesses.append(user_guess) #Add guess to the list of all guesses
+
+        if user_guess in chosen_city.lower(): #Correct guess
+            update_display(chosen_city, display, user_guess)
+        else: #incorrect guess
+            if user_guess not in wrong_guesses: #Only loose life if it's new wrong guess
+                wrong_guesses.append(user_guess)
+                lives -= 1
+                print(f"Wrong guess, you've lost 1 life.")
+
+        # if is_game_won(display):
+        #     end_of_game = True
+        #     print(f"You win! The capital of {country} is {chosen_city}.")
+
+        # if is_game_lost(display):
+        #     end_of_game = True
+        #     print(f"\nYou have lost.\n")
+        #     print(f"The word was {chosen_city.upper()} the capital of {country}.")
+
+    if difficulty == 3:
+        print(f"{hangman_art.stages2[lives]}")
+    else:
+        print(f"{hangman_art.stages[lives]}")
+
 if __name__ == "__main__":
     play_hangman()
-
-
-
-
-# while not end_of_game:
-#     print(hangman_art.stages[lives])
-#     print(f"\nLives: {lives}\n")
-#     print(f"{' '.join(display)}") #Join list of underscores to str
-
-
-#     #TODO Check lenght of input.
-#     if len(user_guess) != 1:
-#         print("You need guess only 1 letter.\n")
-#         continue
-
-
-#     #TODO Check repetitive guesses.
-#     if user_guess in display:
-#         print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
-
-
-#     #TODO game is lost
-#         if lives == 0:
-#             end_of_game = True
-#             print(f"You have lost. The word was: {random_word}")
-
-
-#     #TODO Define win in the game.
-#     if "_" not in display:
-#         end_of_game = True
-#         print(f"You win. You have left {lives} lives.")
-
-# print(hangman_art.stages[lives])
-
-#     #TODO Ask to play again or quit.
