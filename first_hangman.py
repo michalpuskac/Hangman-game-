@@ -61,74 +61,85 @@ def is_game_won():
 def is_game_lost():
 
 
+
+
 def play_hangman():
     """Main function to run the hangman game."""
 
     file = "countries-and-capitals.txt"
     countries_dict = make_dict_from_txt(file)
 
+    welcome_message()
+
+    difficulty = display_menu() #Get the difficulty level based on user input 
+    show_country = difficulty == 1 #Show country on on level 1
+    lives = len(hangman_art.stages) -1 if difficulty < 3 else len(hangman_art.stages2) -1 #set lives based on difficulty
+
+    chosen_city, country = pick_random_word(countries_dict) # Get capital and country
+    display = create_display()
+
 if __name__ == "__main__":
     play_hangman()
 
 
 
-#TODO Show underscore for each letter of the word.
-display =[]
-word_lenght = len(random_word)
+# #TODO Show underscore for each letter of the word.
+# display =[]
+# word_lenght = len(random_word)
 
-for _ in range(word_lenght):
-    display += "_"
-
-
-lives = len(hangman_art.stages)-1
-end_of_game = False
+# for _ in range(word_lenght):
+#     display += "_"
 
 
-while not end_of_game:
-    print(hangman_art.stages[lives])
-    print(f"\nLives: {lives}\n")
-    print(f"{' '.join(display)}") #Join list of underscores to str
+# lives = len(hangman_art.stages)-1
+# end_of_game = False
 
 
-    #TODO Ask user for input.
-    user_guess = input(f"\nGuess a letter: ")
-
-    #TODO Clear screen after each guess to avoid full terminal of history.
-    os.system("clear")
-
-    #TODO Check lenght of input.
-    if len(user_guess) != 1:
-        print("You need guess only 1 letter.\n")
-        continue
+# while not end_of_game:
+#     print(hangman_art.stages[lives])
+#     print(f"\nLives: {lives}\n")
+#     print(f"{' '.join(display)}") #Join list of underscores to str
 
 
-    #TODO Check repetitive guesses.
-    if user_guess in display:
-        print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
+#     #TODO Ask user for input.
+#     user_guess = input(f"\nGuess a letter: ")
+
+#     #TODO Clear screen after each guess to avoid full terminal of history.
+#     os.system("clear")
+
+#     #TODO Check lenght of input.
+#     if len(user_guess) != 1:
+#         print("You need guess only 1 letter.\n")
+#         continue
 
 
-    #TODO Check a guessed letter
-    for position in range(word_lenght):
-        letter = random_word[position].lower()
-        if letter == user_guess.lower():
-            display[position] = letter
+#     #TODO Check repetitive guesses.
+#     if user_guess in display:
+#         print(f"You've already guessed the letter {user_guess.upper()} try another one.\n")
 
 
-    #TODO Check if user is wrong. -lives counter
-    if user_guess not in random_word:
-        print(f"Wrong guess you've lost 1 live.")
-
-        lives -= 1
-        if lives == 0:
-            end_of_game = True
-            print(f"You have lost. The word was: {random_word}")
+#     #TODO Check a guessed letter
+#     for position in range(word_lenght):
+#         letter = random_word[position].lower()
+#         if letter == user_guess.lower():
+#             display[position] = letter
 
 
-    #TODO Define win in the game.
-    if "_" not in display:
-        end_of_game = True
-        print(f"You win. You have left {lives} lives.")
+#     #TODO Check if user is wrong. -lives counter
+#     if user_guess not in random_word:
+#         print(f"Wrong guess you've lost 1 live.")
 
-print(hangman_art.stages[lives])
+#         lives -= 1
+#         if lives == 0:
+#             end_of_game = True
+#             print(f"You have lost. The word was: {random_word}")
 
-    #TODO Ask to play again or quit.
+
+#     #TODO Define win in the game.
+#     if "_" not in display:
+#         end_of_game = True
+#         print(f"You win. You have left {lives} lives.")
+
+# print(hangman_art.stages[lives])
+
+#     #TODO Ask to play again or quit.
