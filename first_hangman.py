@@ -77,6 +77,19 @@ def check_guess(chosen_city, user_guess, lives):
         lives -= 1
     return lives
 
+def print_game_state(display, lives, country, show_country,difficulty):
+    """Prints the current game state of the game, including the hangman graphic, lives, and the guessed word."""
+    if difficulty == 3:
+        print(hangman_art.stages2[lives])
+        print(f"Lives: {len(hangman_art.stages2)-1}")
+    else:
+        print(hangman_art.stages[lives])
+        print(f"Lives: {len(hangman_art.stages)-1}")
+        if show_country: # Only if the difficulty allows display the country
+            print(f"Guess the capital of : {country}\n")
+            print(f"{' '.join(display)}")  # Display the current guessed letters
+
+
 
 def is_game_won():
 
