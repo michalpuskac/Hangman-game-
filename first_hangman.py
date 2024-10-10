@@ -77,6 +77,8 @@ def print_game_state(display, lives, country, show_country,difficulty):
     if difficulty == 3:
         print(hangman_art.stages2[lives])
         print(f"Lives: {lives} / {len(hangman_art.stages2)-1}")
+        print(f"{' '.join(display)}")  # Display the current guessed letters
+
     else:
         print(hangman_art.stages[lives])
         print(f"Lives: {lives} / {len(hangman_art.stages)-1}")
